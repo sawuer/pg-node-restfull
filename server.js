@@ -6,7 +6,8 @@ const
   app = express(),
   pgfn = require('./pgfn.js'),
   { Router } = require('express'),
-  signup = require('./routes/signup.js')
+  signup = require('./routes/signup.js'),
+  users = require('./routes/users.js')
 ;
 
 // conf
@@ -16,9 +17,7 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .use(body_parser.json())
   .use(body_parser.urlencoded({ extended: false }))
+  .use('/users', users)
+  .use('/signup', signup)
   .listen(3000, _ => console.log('server up'))
 ;
-
-// routes
-app
-  .use('/signup', signup);

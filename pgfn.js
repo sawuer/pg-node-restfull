@@ -7,14 +7,14 @@ module.exports = function pgfn(sql, params, cb) {
     database: 'pgdb',
     password: 'sowyer',
     port: 5432,
-  })
-  client.connect()
+  });
+  client.connect();
   client.query(sql, params, (err, result) => {
     if (err) {
       throw Error(err.stack);
     }
     if (cb) {
-      cb(result)
+      cb(result);
     }
     client.end();
   });
