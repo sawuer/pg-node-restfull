@@ -1,12 +1,10 @@
 const 
   body_parser = require('body-parser'),
-  express = require('express'),
   pgfn = require('../pgfn.js'),
-  { Router } = require('express')
+  router = require('express').Router()
 ;
-const router = Router();
 
-router
+module.exports = router
 
   .get('/', (req, res) => {  
     res.render('index', { 
@@ -15,5 +13,3 @@ router
   })
   
   .get('/users', pgfn('select * from users'));
-
-module.exports = router;
