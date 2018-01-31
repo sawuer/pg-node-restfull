@@ -10,9 +10,7 @@ module.exports = router
     pgfn(
       'select * from users', 
       [], 
-      out => {
-        res.send(out.rows)
-      }
+      out => res.send(out.rows)
     );
   })
 
@@ -20,9 +18,7 @@ module.exports = router
     pgfn(
       'select * from users where user_id = $1', 
       [req.params.id], 
-      out => {
-        res.send(out.rows)
-      }
+      out => res.send(out.rows)
     );
   })
 
@@ -30,9 +26,7 @@ module.exports = router
     pgfn(
       'insert into users (user_email, user_password) values ($1, $2)',
       [req.body.user_email, req.body.user_password], 
-      _ => {
-        return res.status(200).json('Пользователь добавлен')
-      }
+      _ => res.status(200).json('Пользователь добавлен')
     )
   })
 
@@ -40,9 +34,7 @@ module.exports = router
     pgfn(
       'update users set user_email = $1, user_password = $2 where user_id = $3',
       [req.body.user_email, req.body.user_password, req.params.id], 
-      _ => {
-        return res.status(200).json('Пользователь обновлен')
-      }
+      _ => res.status(200).json('Пользователь обновлен')
     )
   })
 
@@ -50,9 +42,7 @@ module.exports = router
     pgfn(
       'delete from users where user_id = $1',
       [req.params.id],
-      _ => {
-        return res.status(200).json('Пользователь удален')
-      }
+      _ => res.status(200).json('Пользователь удален')
     )
   })
   
