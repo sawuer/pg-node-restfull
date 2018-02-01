@@ -4,6 +4,10 @@
 
 <form method="post" action="/signin">
 
+  <% if (message) { %>
+    <%= message %>
+  <% } %>
+
   <input name="user_email" type="text" placeholder="Email">
   <input name="user_password" type="password" placeholder="Password">
 
