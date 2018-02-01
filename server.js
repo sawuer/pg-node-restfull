@@ -9,8 +9,9 @@ const
   { Router } = require('express'),
   signup = require('./routes/signup.js'),
   signin = require('./routes/signin.js'),
-  users = require('./routes/users.js')
-  index = require('./routes/index.js')
+  users = require('./routes/users.js'),
+  index = require('./routes/index.js'),
+  verification = require('./routes/verification.js')
 ;
 
 // conf
@@ -32,5 +33,6 @@ app
   .use('/users', users)
   .use('/signup', signup)
   .use('/signin', signin)
+  .use('/verification', verification)
   .listen(3000, _ => console.log('server up'))
 ;
