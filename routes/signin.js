@@ -6,22 +6,26 @@ const
 
 module.exports = router
 
-  .get('/', (req, res) => {  
+  .get('/', (req, res) => {
+    if (req.session.userid) {
+      res.redirect('/');
+    }
     res.render('signin', { 
-      title: 'Signin'
+      title: 'Signin',
+      message: req.query.message
     });
   })
 
   .post('/', (req, res) => {
     pgfn(
-      'select * from users where user_email = $1 and user_password = $2',
+      'select * from users where user_email = $1 and user_password = $2 and user_is_verified = true',
       [req.body.user_email, req.body.user_password], 
-      _ => {
-        if (req.body.user_email && req.body.user_password) {
-          req.session.userid = req.body.user_email;
+      out => {
+        if (out.rows.length == 0) {
+          return res.redirect('/signin?message=Signin+error');
         }
-        res.redirect('/?user=' + req.body.user_email)
-        // return res.status(200).json('Авторизация прошла успешно')
+        req.session.userid = req.body.user_email;
+        res.redirect('/');
       }
     )
   })

@@ -12,7 +12,7 @@ module.exports = router
     }
     res.render('index', { 
       title: 'Home page',
-      user: req.query.user
+      user: req.session.userid
     });
   })
 
