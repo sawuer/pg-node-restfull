@@ -7,8 +7,8 @@ const
 module.exports = router
 
   .get('/', (req, res) => {  
-    res.render('index', { 
-      title: 'Home page!'
+    res.render('signup', { 
+      title: 'Signup'
     });
   })
 
@@ -21,5 +21,5 @@ module.exports = router
       }
     )
   })
-  
+
 ;
