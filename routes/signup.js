@@ -9,9 +9,6 @@ const
 module.exports = router
 
   .get('/', (req, res) => {
-    if (req.session.userid) {
-      res.redirect('/');
-    }
     res.render('signup', { 
       title: 'Signup'
     });

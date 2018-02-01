@@ -34,5 +34,9 @@ app
   .use('/signup', signup)
   .use('/signin', signin)
   .use('/verification', verification)
+  .get('/exit', (req, res) => {
+    req.session.userid = null;
+    res.redirect('/signin');
+  })
   .listen(3000, _ => console.log('server up'))
 ;

@@ -7,9 +7,6 @@ const
 module.exports = router
 
   .get('/', (req, res) => {
-    if (req.session.userid) {
-      res.redirect('/');
-    }
     res.render('signin', { 
       title: 'Signin',
       message: req.query.message
